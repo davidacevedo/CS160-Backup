@@ -1,0 +1,31 @@
+classA {
+
+       f0(y : boolean) -> integer {
+       	    integer val
+
+       	    if y {
+	       val = 5 * 5
+	    } else {
+	       val = 6 / 2
+	    }
+
+	    return val	       
+       }
+
+       doAll() -> none {
+       
+           print f0(true)
+	   print f0(false)
+
+       }
+
+}
+
+Main {
+
+     main() -> none {
+     	    classA a
+	    a.doAll()
+     }
+
+}

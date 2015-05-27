@@ -1,0 +1,64 @@
+# Start Program
+.data
+printstr: .asciz "%d\n"
+
+
+.globl Main_main
+
+#Class Node
+#Method Node
+ classA_f0:
+#Parameter Node
+#Method Body
+	push %ebp
+	mov %esp, %ebp
+	 sub $0, %esp
+#Variable Node: x
+#We will grab this variable at the offset of 12	then we will push it to the top like an integer literal
+	mov 12(%ebp), %eax
+	push %eax
+#Variable Node: x
+#We will grab this variable at the offset of 12	then we will push it to the top like an integer literal
+	mov 12(%ebp), %eax
+	push %eax
+#Times Node: Multiplies the first two things on top of the stack
+	pop %edx
+	pop %eax
+	imul %edx, %eax
+	push %eax
+#Print Node: Calls printf so we can see our results
+	push $printstr
+	call printf
+	mov %ebp, %esp
+	pop %ebp
+	ret
+#Method Node
+ classA_doAll:
+#Method Body
+	push %ebp
+	mov %esp, %ebp
+	 sub $0, %esp
+#Call Node
+#Method Call Node
+#Integer Literal Node: We grab the literal number of 5
+	push $5
+#Call Node
+#Method Call Node
+#Integer Literal Node: We grab the literal number of 6
+	push $6
+	mov %ebp, %esp
+	pop %ebp
+	ret
+#Class Node
+#Method Node
+ Main_main:
+#Method Body
+	push %ebp
+	mov %esp, %ebp
+	 sub $4, %esp
+#Declaration Node
+#Call Node
+#Method Call Node
+	mov %ebp, %esp
+	pop %ebp
+	ret

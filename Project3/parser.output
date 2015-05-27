@@ -1,0 +1,1806 @@
+Terminals unused in grammar
+
+   METHOD
+   ASSIGNID
+   ASSIGNIDDOT
+
+
+Grammar
+
+    0 $accept: Start $end
+
+    1 Start: ClassDeclarations
+
+    2 ClassDeclarations: ClassDeclarations ClassDeclaration
+    3                  | /* empty */
+
+    4 ClassDeclaration: IDENTIFIER "{" Members Methods "}"
+    5                 | IDENTIFIER "extends" IDENTIFIER "{" Members Methods "}"
+
+    6 Members: Members Member
+    7        | /* empty */
+
+    8 Member: Type Identifiers
+
+    9 Methods: Method Methods
+   10        | /* empty */
+
+   11 Method: IDENTIFIER "(" Parameter ")" "->" ReturnType "{" Body "}"
+
+   12 Parameter: Parameter "," Parameters
+   13          | Parameters
+   14          | /* empty */
+
+   15 Type: "boolean"
+   16     | "integer"
+   17     | IDENTIFIER
+   18     | "none"
+
+   19 Parameters: IDENTIFIER ":" Type
+
+   20 ReturnType: Type
+
+   21 Body: Declarations Statements ReturnStatement
+   22     | Declarations Statements
+
+   23 Declarations: Declarations Declaration
+   24             | /* empty */
+
+   25 Declaration: Type Identifiers
+
+   26 Identifiers: IDENTIFIER "," Identifiers
+   27            | IDENTIFIER
+
+   28 Statements: Statement Statements
+   29           | /* empty */
+
+   30 Statement: IDENTIFIER "=" Expression
+   31          | IDENTIFIER "." IDENTIFIER "=" Expression
+   32          | MethodCall
+   33          | "if" Expression "{" Block "}" Else
+   34          | "while" Expression "{" Block "}"
+   35          | "print" Expression
+
+   36 Block: Statement Statements
+
+   37 Else: "else" "{" Block "}"
+   38     | /* empty */
+
+   39 MethodCall: IDENTIFIER "(" Arguments ")"
+   40           | IDENTIFIER "." IDENTIFIER "(" Arguments ")"
+
+   41 ReturnStatement: "return" Expression
+
+   42 Expression: Expression "+" Expression
+   43           | Expression "-" Expression
+   44           | Expression "*" Expression
+   45           | Expression "/" Expression
+   46           | Expression "<" Expression
+   47           | Expression "<=" Expression
+   48           | Expression "equals" Expression
+   49           | Expression "and" Expression
+   50           | Expression "or" Expression
+   51           | "not" Expression
+   52           | "-" Expression
+   53           | IDENTIFIER
+   54           | IDENTIFIER "." IDENTIFIER
+   55           | MethodCall
+   56           | "(" Expression ")"
+   57           | "number"
+   58           | "true"
+   59           | "false"
+   60           | "new" IDENTIFIER
+   61           | "new" IDENTIFIER "(" Arguments ")"
+
+   62 Arguments: Arguments "," Expression
+   63          | Expression
+   64          | /* empty */
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+"integer" (258) 16
+"boolean" (259) 15
+IDENTIFIER (260) 4 5 11 17 19 26 27 30 31 39 40 53 54 60 61
+"print" (261) 35
+"return" (262) 41
+"if" (263) 33
+"else" (264) 37
+"while" (265) 34
+"new" (266) 60 61
+"none" (267) 18
+"equals" (268) 48
+"and" (269) 49
+"or" (270) 50
+"not" (271) 51
+"true" (272) 58
+"false" (273) 59
+"extends" (274) 5
+"number" (275) 57
+"+" (276) 42
+"-" (277) 43 52
+"*" (278) 44
+"/" (279) 45
+"<" (280) 46
+"<=" (281) 47
+"=" (282) 30 31
+"{" (283) 4 5 11 33 34 37
+"}" (284) 4 5 11 33 34 37
+"(" (285) 11 39 40 56 61
+")" (286) 11 39 40 56 61
+METHOD (287)
+"->" (288) 11
+":" (289) 19
+"," (290) 12 26 62
+"." (291) 31 40 54
+ASSIGNID (292)
+ASSIGNIDDOT (293)
+
+
+Nonterminals, with rules where they appear
+
+$accept (39)
+    on left: 0
+Start (40)
+    on left: 1, on right: 0
+ClassDeclarations (41)
+    on left: 2 3, on right: 1 2
+ClassDeclaration (42)
+    on left: 4 5, on right: 2
+Members (43)
+    on left: 6 7, on right: 4 5 6
+Member (44)
+    on left: 8, on right: 6
+Methods (45)
+    on left: 9 10, on right: 4 5 9
+Method (46)
+    on left: 11, on right: 9
+Parameter (47)
+    on left: 12 13 14, on right: 11 12
+Type (48)
+    on left: 15 16 17 18, on right: 8 19 20 25
+Parameters (49)
+    on left: 19, on right: 12 13
+ReturnType (50)
+    on left: 20, on right: 11
+Body (51)
+    on left: 21 22, on right: 11
+Declarations (52)
+    on left: 23 24, on right: 21 22 23
+Declaration (53)
+    on left: 25, on right: 23
+Identifiers (54)
+    on left: 26 27, on right: 8 25 26
+Statements (55)
+    on left: 28 29, on right: 21 22 28 36
+Statement (56)
+    on left: 30 31 32 33 34 35, on right: 28 36
+Block (57)
+    on left: 36, on right: 33 34 37
+Else (58)
+    on left: 37 38, on right: 33
+MethodCall (59)
+    on left: 39 40, on right: 32 55
+ReturnStatement (60)
+    on left: 41, on right: 21
+Expression (61)
+    on left: 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59
+    60 61, on right: 30 31 33 34 35 41 42 43 44 45 46 47 48 49 50 51
+    52 56 62 63
+Arguments (62)
+    on left: 62 63 64, on right: 39 40 61 62
+
+
+State 0
+
+    0 $accept: . Start $end
+
+    $default  reduce using rule 3 (ClassDeclarations)
+
+    Start              go to state 1
+    ClassDeclarations  go to state 2
+
+
+State 1
+
+    0 $accept: Start . $end
+
+    $end  shift, and go to state 3
+
+
+State 2
+
+    1 Start: ClassDeclarations .
+    2 ClassDeclarations: ClassDeclarations . ClassDeclaration
+
+    IDENTIFIER  shift, and go to state 4
+
+    $default  reduce using rule 1 (Start)
+
+    ClassDeclaration  go to state 5
+
+
+State 3
+
+    0 $accept: Start $end .
+
+    $default  accept
+
+
+State 4
+
+    4 ClassDeclaration: IDENTIFIER . "{" Members Methods "}"
+    5                 | IDENTIFIER . "extends" IDENTIFIER "{" Members Methods "}"
+
+    "extends"  shift, and go to state 6
+    "{"        shift, and go to state 7
+
+
+State 5
+
+    2 ClassDeclarations: ClassDeclarations ClassDeclaration .
+
+    $default  reduce using rule 2 (ClassDeclarations)
+
+
+State 6
+
+    5 ClassDeclaration: IDENTIFIER "extends" . IDENTIFIER "{" Members Methods "}"
+
+    IDENTIFIER  shift, and go to state 8
+
+
+State 7
+
+    4 ClassDeclaration: IDENTIFIER "{" . Members Methods "}"
+
+    $default  reduce using rule 7 (Members)
+
+    Members  go to state 9
+
+
+State 8
+
+    5 ClassDeclaration: IDENTIFIER "extends" IDENTIFIER . "{" Members Methods "}"
+
+    "{"  shift, and go to state 10
+
+
+State 9
+
+    4 ClassDeclaration: IDENTIFIER "{" Members . Methods "}"
+    6 Members: Members . Member
+
+    "integer"   shift, and go to state 11
+    "boolean"   shift, and go to state 12
+    IDENTIFIER  shift, and go to state 13
+    "none"      shift, and go to state 14
+
+    $default  reduce using rule 10 (Methods)
+
+    Member   go to state 15
+    Methods  go to state 16
+    Method   go to state 17
+    Type     go to state 18
+
+
+State 10
+
+    5 ClassDeclaration: IDENTIFIER "extends" IDENTIFIER "{" . Members Methods "}"
+
+    $default  reduce using rule 7 (Members)
+
+    Members  go to state 19
+
+
+State 11
+
+   16 Type: "integer" .
+
+    $default  reduce using rule 16 (Type)
+
+
+State 12
+
+   15 Type: "boolean" .
+
+    $default  reduce using rule 15 (Type)
+
+
+State 13
+
+   11 Method: IDENTIFIER . "(" Parameter ")" "->" ReturnType "{" Body "}"
+   17 Type: IDENTIFIER .
+
+    "("  shift, and go to state 20
+
+    $default  reduce using rule 17 (Type)
+
+
+State 14
+
+   18 Type: "none" .
+
+    $default  reduce using rule 18 (Type)
+
+
+State 15
+
+    6 Members: Members Member .
+
+    $default  reduce using rule 6 (Members)
+
+
+State 16
+
+    4 ClassDeclaration: IDENTIFIER "{" Members Methods . "}"
+
+    "}"  shift, and go to state 21
+
+
+State 17
+
+    9 Methods: Method . Methods
+
+    IDENTIFIER  shift, and go to state 22
+
+    $default  reduce using rule 10 (Methods)
+
+    Methods  go to state 23
+    Method   go to state 17
+
+
+State 18
+
+    8 Member: Type . Identifiers
+
+    IDENTIFIER  shift, and go to state 24
+
+    Identifiers  go to state 25
+
+
+State 19
+
+    5 ClassDeclaration: IDENTIFIER "extends" IDENTIFIER "{" Members . Methods "}"
+    6 Members: Members . Member
+
+    "integer"   shift, and go to state 11
+    "boolean"   shift, and go to state 12
+    IDENTIFIER  shift, and go to state 13
+    "none"      shift, and go to state 14
+
+    $default  reduce using rule 10 (Methods)
+
+    Member   go to state 15
+    Methods  go to state 26
+    Method   go to state 17
+    Type     go to state 18
+
+
+State 20
+
+   11 Method: IDENTIFIER "(" . Parameter ")" "->" ReturnType "{" Body "}"
+
+    IDENTIFIER  shift, and go to state 27
+
+    $default  reduce using rule 14 (Parameter)
+
+    Parameter   go to state 28
+    Parameters  go to state 29
+
+
+State 21
+
+    4 ClassDeclaration: IDENTIFIER "{" Members Methods "}" .
+
+    $default  reduce using rule 4 (ClassDeclaration)
+
+
+State 22
+
+   11 Method: IDENTIFIER . "(" Parameter ")" "->" ReturnType "{" Body "}"
+
+    "("  shift, and go to state 20
+
+
+State 23
+
+    9 Methods: Method Methods .
+
+    $default  reduce using rule 9 (Methods)
+
+
+State 24
+
+   26 Identifiers: IDENTIFIER . "," Identifiers
+   27            | IDENTIFIER .
+
+    ","  shift, and go to state 30
+
+    $default  reduce using rule 27 (Identifiers)
+
+
+State 25
+
+    8 Member: Type Identifiers .
+
+    $default  reduce using rule 8 (Member)
+
+
+State 26
+
+    5 ClassDeclaration: IDENTIFIER "extends" IDENTIFIER "{" Members Methods . "}"
+
+    "}"  shift, and go to state 31
+
+
+State 27
+
+   19 Parameters: IDENTIFIER . ":" Type
+
+    ":"  shift, and go to state 32
+
+
+State 28
+
+   11 Method: IDENTIFIER "(" Parameter . ")" "->" ReturnType "{" Body "}"
+   12 Parameter: Parameter . "," Parameters
+
+    ")"  shift, and go to state 33
+    ","  shift, and go to state 34
+
+
+State 29
+
+   13 Parameter: Parameters .
+
+    $default  reduce using rule 13 (Parameter)
+
+
+State 30
+
+   26 Identifiers: IDENTIFIER "," . Identifiers
+
+    IDENTIFIER  shift, and go to state 24
+
+    Identifiers  go to state 35
+
+
+State 31
+
+    5 ClassDeclaration: IDENTIFIER "extends" IDENTIFIER "{" Members Methods "}" .
+
+    $default  reduce using rule 5 (ClassDeclaration)
+
+
+State 32
+
+   19 Parameters: IDENTIFIER ":" . Type
+
+    "integer"   shift, and go to state 11
+    "boolean"   shift, and go to state 12
+    IDENTIFIER  shift, and go to state 36
+    "none"      shift, and go to state 14
+
+    Type  go to state 37
+
+
+State 33
+
+   11 Method: IDENTIFIER "(" Parameter ")" . "->" ReturnType "{" Body "}"
+
+    "->"  shift, and go to state 38
+
+
+State 34
+
+   12 Parameter: Parameter "," . Parameters
+
+    IDENTIFIER  shift, and go to state 27
+
+    Parameters  go to state 39
+
+
+State 35
+
+   26 Identifiers: IDENTIFIER "," Identifiers .
+
+    $default  reduce using rule 26 (Identifiers)
+
+
+State 36
+
+   17 Type: IDENTIFIER .
+
+    $default  reduce using rule 17 (Type)
+
+
+State 37
+
+   19 Parameters: IDENTIFIER ":" Type .
+
+    $default  reduce using rule 19 (Parameters)
+
+
+State 38
+
+   11 Method: IDENTIFIER "(" Parameter ")" "->" . ReturnType "{" Body "}"
+
+    "integer"   shift, and go to state 11
+    "boolean"   shift, and go to state 12
+    IDENTIFIER  shift, and go to state 36
+    "none"      shift, and go to state 14
+
+    Type        go to state 40
+    ReturnType  go to state 41
+
+
+State 39
+
+   12 Parameter: Parameter "," Parameters .
+
+    $default  reduce using rule 12 (Parameter)
+
+
+State 40
+
+   20 ReturnType: Type .
+
+    $default  reduce using rule 20 (ReturnType)
+
+
+State 41
+
+   11 Method: IDENTIFIER "(" Parameter ")" "->" ReturnType . "{" Body "}"
+
+    "{"  shift, and go to state 42
+
+
+State 42
+
+   11 Method: IDENTIFIER "(" Parameter ")" "->" ReturnType "{" . Body "}"
+
+    $default  reduce using rule 24 (Declarations)
+
+    Body          go to state 43
+    Declarations  go to state 44
+
+
+State 43
+
+   11 Method: IDENTIFIER "(" Parameter ")" "->" ReturnType "{" Body . "}"
+
+    "}"  shift, and go to state 45
+
+
+State 44
+
+   21 Body: Declarations . Statements ReturnStatement
+   22     | Declarations . Statements
+   23 Declarations: Declarations . Declaration
+
+    "integer"   shift, and go to state 11
+    "boolean"   shift, and go to state 12
+    IDENTIFIER  shift, and go to state 46
+    "print"     shift, and go to state 47
+    "if"        shift, and go to state 48
+    "while"     shift, and go to state 49
+    "none"      shift, and go to state 14
+
+    $default  reduce using rule 29 (Statements)
+
+    Type         go to state 50
+    Declaration  go to state 51
+    Statements   go to state 52
+    Statement    go to state 53
+    MethodCall   go to state 54
+
+
+State 45
+
+   11 Method: IDENTIFIER "(" Parameter ")" "->" ReturnType "{" Body "}" .
+
+    $default  reduce using rule 11 (Method)
+
+
+State 46
+
+   17 Type: IDENTIFIER .
+   30 Statement: IDENTIFIER . "=" Expression
+   31          | IDENTIFIER . "." IDENTIFIER "=" Expression
+   39 MethodCall: IDENTIFIER . "(" Arguments ")"
+   40           | IDENTIFIER . "." IDENTIFIER "(" Arguments ")"
+
+    "="  shift, and go to state 55
+    "("  shift, and go to state 56
+    "."  shift, and go to state 57
+
+    $default  reduce using rule 17 (Type)
+
+
+State 47
+
+   35 Statement: "print" . Expression
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    MethodCall  go to state 66
+    Expression  go to state 67
+
+
+State 48
+
+   33 Statement: "if" . Expression "{" Block "}" Else
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    MethodCall  go to state 66
+    Expression  go to state 68
+
+
+State 49
+
+   34 Statement: "while" . Expression "{" Block "}"
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    MethodCall  go to state 66
+    Expression  go to state 69
+
+
+State 50
+
+   25 Declaration: Type . Identifiers
+
+    IDENTIFIER  shift, and go to state 24
+
+    Identifiers  go to state 70
+
+
+State 51
+
+   23 Declarations: Declarations Declaration .
+
+    $default  reduce using rule 23 (Declarations)
+
+
+State 52
+
+   21 Body: Declarations Statements . ReturnStatement
+   22     | Declarations Statements .
+
+    "return"  shift, and go to state 71
+
+    $default  reduce using rule 22 (Body)
+
+    ReturnStatement  go to state 72
+
+
+State 53
+
+   28 Statements: Statement . Statements
+
+    IDENTIFIER  shift, and go to state 73
+    "print"     shift, and go to state 47
+    "if"        shift, and go to state 48
+    "while"     shift, and go to state 49
+
+    $default  reduce using rule 29 (Statements)
+
+    Statements  go to state 74
+    Statement   go to state 53
+    MethodCall  go to state 54
+
+
+State 54
+
+   32 Statement: MethodCall .
+
+    $default  reduce using rule 32 (Statement)
+
+
+State 55
+
+   30 Statement: IDENTIFIER "=" . Expression
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    MethodCall  go to state 66
+    Expression  go to state 75
+
+
+State 56
+
+   39 MethodCall: IDENTIFIER "(" . Arguments ")"
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    $default  reduce using rule 64 (Arguments)
+
+    MethodCall  go to state 66
+    Expression  go to state 76
+    Arguments   go to state 77
+
+
+State 57
+
+   31 Statement: IDENTIFIER "." . IDENTIFIER "=" Expression
+   40 MethodCall: IDENTIFIER "." . IDENTIFIER "(" Arguments ")"
+
+    IDENTIFIER  shift, and go to state 78
+
+
+State 58
+
+   39 MethodCall: IDENTIFIER . "(" Arguments ")"
+   40           | IDENTIFIER . "." IDENTIFIER "(" Arguments ")"
+   53 Expression: IDENTIFIER .
+   54           | IDENTIFIER . "." IDENTIFIER
+
+    "("  shift, and go to state 56
+    "."  shift, and go to state 79
+
+    $default  reduce using rule 53 (Expression)
+
+
+State 59
+
+   60 Expression: "new" . IDENTIFIER
+   61           | "new" . IDENTIFIER "(" Arguments ")"
+
+    IDENTIFIER  shift, and go to state 80
+
+
+State 60
+
+   51 Expression: "not" . Expression
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    MethodCall  go to state 66
+    Expression  go to state 81
+
+
+State 61
+
+   58 Expression: "true" .
+
+    $default  reduce using rule 58 (Expression)
+
+
+State 62
+
+   59 Expression: "false" .
+
+    $default  reduce using rule 59 (Expression)
+
+
+State 63
+
+   57 Expression: "number" .
+
+    $default  reduce using rule 57 (Expression)
+
+
+State 64
+
+   52 Expression: "-" . Expression
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    MethodCall  go to state 66
+    Expression  go to state 82
+
+
+State 65
+
+   56 Expression: "(" . Expression ")"
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    MethodCall  go to state 66
+    Expression  go to state 83
+
+
+State 66
+
+   55 Expression: MethodCall .
+
+    $default  reduce using rule 55 (Expression)
+
+
+State 67
+
+   35 Statement: "print" Expression .
+   42 Expression: Expression . "+" Expression
+   43           | Expression . "-" Expression
+   44           | Expression . "*" Expression
+   45           | Expression . "/" Expression
+   46           | Expression . "<" Expression
+   47           | Expression . "<=" Expression
+   48           | Expression . "equals" Expression
+   49           | Expression . "and" Expression
+   50           | Expression . "or" Expression
+
+    "equals"  shift, and go to state 84
+    "and"     shift, and go to state 85
+    "or"      shift, and go to state 86
+    "+"       shift, and go to state 87
+    "-"       shift, and go to state 88
+    "*"       shift, and go to state 89
+    "/"       shift, and go to state 90
+    "<"       shift, and go to state 91
+    "<="      shift, and go to state 92
+
+    $default  reduce using rule 35 (Statement)
+
+
+State 68
+
+   33 Statement: "if" Expression . "{" Block "}" Else
+   42 Expression: Expression . "+" Expression
+   43           | Expression . "-" Expression
+   44           | Expression . "*" Expression
+   45           | Expression . "/" Expression
+   46           | Expression . "<" Expression
+   47           | Expression . "<=" Expression
+   48           | Expression . "equals" Expression
+   49           | Expression . "and" Expression
+   50           | Expression . "or" Expression
+
+    "equals"  shift, and go to state 84
+    "and"     shift, and go to state 85
+    "or"      shift, and go to state 86
+    "+"       shift, and go to state 87
+    "-"       shift, and go to state 88
+    "*"       shift, and go to state 89
+    "/"       shift, and go to state 90
+    "<"       shift, and go to state 91
+    "<="      shift, and go to state 92
+    "{"       shift, and go to state 93
+
+
+State 69
+
+   34 Statement: "while" Expression . "{" Block "}"
+   42 Expression: Expression . "+" Expression
+   43           | Expression . "-" Expression
+   44           | Expression . "*" Expression
+   45           | Expression . "/" Expression
+   46           | Expression . "<" Expression
+   47           | Expression . "<=" Expression
+   48           | Expression . "equals" Expression
+   49           | Expression . "and" Expression
+   50           | Expression . "or" Expression
+
+    "equals"  shift, and go to state 84
+    "and"     shift, and go to state 85
+    "or"      shift, and go to state 86
+    "+"       shift, and go to state 87
+    "-"       shift, and go to state 88
+    "*"       shift, and go to state 89
+    "/"       shift, and go to state 90
+    "<"       shift, and go to state 91
+    "<="      shift, and go to state 92
+    "{"       shift, and go to state 94
+
+
+State 70
+
+   25 Declaration: Type Identifiers .
+
+    $default  reduce using rule 25 (Declaration)
+
+
+State 71
+
+   41 ReturnStatement: "return" . Expression
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    MethodCall  go to state 66
+    Expression  go to state 95
+
+
+State 72
+
+   21 Body: Declarations Statements ReturnStatement .
+
+    $default  reduce using rule 21 (Body)
+
+
+State 73
+
+   30 Statement: IDENTIFIER . "=" Expression
+   31          | IDENTIFIER . "." IDENTIFIER "=" Expression
+   39 MethodCall: IDENTIFIER . "(" Arguments ")"
+   40           | IDENTIFIER . "." IDENTIFIER "(" Arguments ")"
+
+    "="  shift, and go to state 55
+    "("  shift, and go to state 56
+    "."  shift, and go to state 57
+
+
+State 74
+
+   28 Statements: Statement Statements .
+
+    $default  reduce using rule 28 (Statements)
+
+
+State 75
+
+   30 Statement: IDENTIFIER "=" Expression .
+   42 Expression: Expression . "+" Expression
+   43           | Expression . "-" Expression
+   44           | Expression . "*" Expression
+   45           | Expression . "/" Expression
+   46           | Expression . "<" Expression
+   47           | Expression . "<=" Expression
+   48           | Expression . "equals" Expression
+   49           | Expression . "and" Expression
+   50           | Expression . "or" Expression
+
+    "equals"  shift, and go to state 84
+    "and"     shift, and go to state 85
+    "or"      shift, and go to state 86
+    "+"       shift, and go to state 87
+    "-"       shift, and go to state 88
+    "*"       shift, and go to state 89
+    "/"       shift, and go to state 90
+    "<"       shift, and go to state 91
+    "<="      shift, and go to state 92
+
+    $default  reduce using rule 30 (Statement)
+
+
+State 76
+
+   42 Expression: Expression . "+" Expression
+   43           | Expression . "-" Expression
+   44           | Expression . "*" Expression
+   45           | Expression . "/" Expression
+   46           | Expression . "<" Expression
+   47           | Expression . "<=" Expression
+   48           | Expression . "equals" Expression
+   49           | Expression . "and" Expression
+   50           | Expression . "or" Expression
+   63 Arguments: Expression .
+
+    "equals"  shift, and go to state 84
+    "and"     shift, and go to state 85
+    "or"      shift, and go to state 86
+    "+"       shift, and go to state 87
+    "-"       shift, and go to state 88
+    "*"       shift, and go to state 89
+    "/"       shift, and go to state 90
+    "<"       shift, and go to state 91
+    "<="      shift, and go to state 92
+
+    $default  reduce using rule 63 (Arguments)
+
+
+State 77
+
+   39 MethodCall: IDENTIFIER "(" Arguments . ")"
+   62 Arguments: Arguments . "," Expression
+
+    ")"  shift, and go to state 96
+    ","  shift, and go to state 97
+
+
+State 78
+
+   31 Statement: IDENTIFIER "." IDENTIFIER . "=" Expression
+   40 MethodCall: IDENTIFIER "." IDENTIFIER . "(" Arguments ")"
+
+    "="  shift, and go to state 98
+    "("  shift, and go to state 99
+
+
+State 79
+
+   40 MethodCall: IDENTIFIER "." . IDENTIFIER "(" Arguments ")"
+   54 Expression: IDENTIFIER "." . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 100
+
+
+State 80
+
+   60 Expression: "new" IDENTIFIER .
+   61           | "new" IDENTIFIER . "(" Arguments ")"
+
+    "("  shift, and go to state 101
+
+    $default  reduce using rule 60 (Expression)
+
+
+State 81
+
+   42 Expression: Expression . "+" Expression
+   43           | Expression . "-" Expression
+   44           | Expression . "*" Expression
+   45           | Expression . "/" Expression
+   46           | Expression . "<" Expression
+   47           | Expression . "<=" Expression
+   48           | Expression . "equals" Expression
+   49           | Expression . "and" Expression
+   50           | Expression . "or" Expression
+   51           | "not" Expression .
+
+    $default  reduce using rule 51 (Expression)
+
+
+State 82
+
+   42 Expression: Expression . "+" Expression
+   43           | Expression . "-" Expression
+   44           | Expression . "*" Expression
+   45           | Expression . "/" Expression
+   46           | Expression . "<" Expression
+   47           | Expression . "<=" Expression
+   48           | Expression . "equals" Expression
+   49           | Expression . "and" Expression
+   50           | Expression . "or" Expression
+   52           | "-" Expression .
+
+    $default  reduce using rule 52 (Expression)
+
+
+State 83
+
+   42 Expression: Expression . "+" Expression
+   43           | Expression . "-" Expression
+   44           | Expression . "*" Expression
+   45           | Expression . "/" Expression
+   46           | Expression . "<" Expression
+   47           | Expression . "<=" Expression
+   48           | Expression . "equals" Expression
+   49           | Expression . "and" Expression
+   50           | Expression . "or" Expression
+   56           | "(" Expression . ")"
+
+    "equals"  shift, and go to state 84
+    "and"     shift, and go to state 85
+    "or"      shift, and go to state 86
+    "+"       shift, and go to state 87
+    "-"       shift, and go to state 88
+    "*"       shift, and go to state 89
+    "/"       shift, and go to state 90
+    "<"       shift, and go to state 91
+    "<="      shift, and go to state 92
+    ")"       shift, and go to state 102
+
+
+State 84
+
+   48 Expression: Expression "equals" . Expression
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    MethodCall  go to state 66
+    Expression  go to state 103
+
+
+State 85
+
+   49 Expression: Expression "and" . Expression
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    MethodCall  go to state 66
+    Expression  go to state 104
+
+
+State 86
+
+   50 Expression: Expression "or" . Expression
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    MethodCall  go to state 66
+    Expression  go to state 105
+
+
+State 87
+
+   42 Expression: Expression "+" . Expression
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    MethodCall  go to state 66
+    Expression  go to state 106
+
+
+State 88
+
+   43 Expression: Expression "-" . Expression
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    MethodCall  go to state 66
+    Expression  go to state 107
+
+
+State 89
+
+   44 Expression: Expression "*" . Expression
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    MethodCall  go to state 66
+    Expression  go to state 108
+
+
+State 90
+
+   45 Expression: Expression "/" . Expression
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    MethodCall  go to state 66
+    Expression  go to state 109
+
+
+State 91
+
+   46 Expression: Expression "<" . Expression
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    MethodCall  go to state 66
+    Expression  go to state 110
+
+
+State 92
+
+   47 Expression: Expression "<=" . Expression
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    MethodCall  go to state 66
+    Expression  go to state 111
+
+
+State 93
+
+   33 Statement: "if" Expression "{" . Block "}" Else
+
+    IDENTIFIER  shift, and go to state 73
+    "print"     shift, and go to state 47
+    "if"        shift, and go to state 48
+    "while"     shift, and go to state 49
+
+    Statement   go to state 112
+    Block       go to state 113
+    MethodCall  go to state 54
+
+
+State 94
+
+   34 Statement: "while" Expression "{" . Block "}"
+
+    IDENTIFIER  shift, and go to state 73
+    "print"     shift, and go to state 47
+    "if"        shift, and go to state 48
+    "while"     shift, and go to state 49
+
+    Statement   go to state 112
+    Block       go to state 114
+    MethodCall  go to state 54
+
+
+State 95
+
+   41 ReturnStatement: "return" Expression .
+   42 Expression: Expression . "+" Expression
+   43           | Expression . "-" Expression
+   44           | Expression . "*" Expression
+   45           | Expression . "/" Expression
+   46           | Expression . "<" Expression
+   47           | Expression . "<=" Expression
+   48           | Expression . "equals" Expression
+   49           | Expression . "and" Expression
+   50           | Expression . "or" Expression
+
+    "equals"  shift, and go to state 84
+    "and"     shift, and go to state 85
+    "or"      shift, and go to state 86
+    "+"       shift, and go to state 87
+    "-"       shift, and go to state 88
+    "*"       shift, and go to state 89
+    "/"       shift, and go to state 90
+    "<"       shift, and go to state 91
+    "<="      shift, and go to state 92
+
+    $default  reduce using rule 41 (ReturnStatement)
+
+
+State 96
+
+   39 MethodCall: IDENTIFIER "(" Arguments ")" .
+
+    $default  reduce using rule 39 (MethodCall)
+
+
+State 97
+
+   62 Arguments: Arguments "," . Expression
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    MethodCall  go to state 66
+    Expression  go to state 115
+
+
+State 98
+
+   31 Statement: IDENTIFIER "." IDENTIFIER "=" . Expression
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    MethodCall  go to state 66
+    Expression  go to state 116
+
+
+State 99
+
+   40 MethodCall: IDENTIFIER "." IDENTIFIER "(" . Arguments ")"
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    $default  reduce using rule 64 (Arguments)
+
+    MethodCall  go to state 66
+    Expression  go to state 76
+    Arguments   go to state 117
+
+
+State 100
+
+   40 MethodCall: IDENTIFIER "." IDENTIFIER . "(" Arguments ")"
+   54 Expression: IDENTIFIER "." IDENTIFIER .
+
+    "("  shift, and go to state 99
+
+    $default  reduce using rule 54 (Expression)
+
+
+State 101
+
+   61 Expression: "new" IDENTIFIER "(" . Arguments ")"
+
+    IDENTIFIER  shift, and go to state 58
+    "new"       shift, and go to state 59
+    "not"       shift, and go to state 60
+    "true"      shift, and go to state 61
+    "false"     shift, and go to state 62
+    "number"    shift, and go to state 63
+    "-"         shift, and go to state 64
+    "("         shift, and go to state 65
+
+    $default  reduce using rule 64 (Arguments)
+
+    MethodCall  go to state 66
+    Expression  go to state 76
+    Arguments   go to state 118
+
+
+State 102
+
+   56 Expression: "(" Expression ")" .
+
+    $default  reduce using rule 56 (Expression)
+
+
+State 103
+
+   42 Expression: Expression . "+" Expression
+   43           | Expression . "-" Expression
+   44           | Expression . "*" Expression
+   45           | Expression . "/" Expression
+   46           | Expression . "<" Expression
+   47           | Expression . "<=" Expression
+   48           | Expression . "equals" Expression
+   48           | Expression "equals" Expression .
+   49           | Expression . "and" Expression
+   50           | Expression . "or" Expression
+
+    "+"  shift, and go to state 87
+    "-"  shift, and go to state 88
+    "*"  shift, and go to state 89
+    "/"  shift, and go to state 90
+
+    $default  reduce using rule 48 (Expression)
+
+
+State 104
+
+   42 Expression: Expression . "+" Expression
+   43           | Expression . "-" Expression
+   44           | Expression . "*" Expression
+   45           | Expression . "/" Expression
+   46           | Expression . "<" Expression
+   47           | Expression . "<=" Expression
+   48           | Expression . "equals" Expression
+   49           | Expression . "and" Expression
+   49           | Expression "and" Expression .
+   50           | Expression . "or" Expression
+
+    "equals"  shift, and go to state 84
+    "+"       shift, and go to state 87
+    "-"       shift, and go to state 88
+    "*"       shift, and go to state 89
+    "/"       shift, and go to state 90
+    "<"       shift, and go to state 91
+    "<="      shift, and go to state 92
+
+    $default  reduce using rule 49 (Expression)
+
+
+State 105
+
+   42 Expression: Expression . "+" Expression
+   43           | Expression . "-" Expression
+   44           | Expression . "*" Expression
+   45           | Expression . "/" Expression
+   46           | Expression . "<" Expression
+   47           | Expression . "<=" Expression
+   48           | Expression . "equals" Expression
+   49           | Expression . "and" Expression
+   50           | Expression . "or" Expression
+   50           | Expression "or" Expression .
+
+    "equals"  shift, and go to state 84
+    "and"     shift, and go to state 85
+    "+"       shift, and go to state 87
+    "-"       shift, and go to state 88
+    "*"       shift, and go to state 89
+    "/"       shift, and go to state 90
+    "<"       shift, and go to state 91
+    "<="      shift, and go to state 92
+
+    $default  reduce using rule 50 (Expression)
+
+
+State 106
+
+   42 Expression: Expression . "+" Expression
+   42           | Expression "+" Expression .
+   43           | Expression . "-" Expression
+   44           | Expression . "*" Expression
+   45           | Expression . "/" Expression
+   46           | Expression . "<" Expression
+   47           | Expression . "<=" Expression
+   48           | Expression . "equals" Expression
+   49           | Expression . "and" Expression
+   50           | Expression . "or" Expression
+
+    "*"  shift, and go to state 89
+    "/"  shift, and go to state 90
+
+    $default  reduce using rule 42 (Expression)
+
+
+State 107
+
+   42 Expression: Expression . "+" Expression
+   43           | Expression . "-" Expression
+   43           | Expression "-" Expression .
+   44           | Expression . "*" Expression
+   45           | Expression . "/" Expression
+   46           | Expression . "<" Expression
+   47           | Expression . "<=" Expression
+   48           | Expression . "equals" Expression
+   49           | Expression . "and" Expression
+   50           | Expression . "or" Expression
+
+    "*"  shift, and go to state 89
+    "/"  shift, and go to state 90
+
+    $default  reduce using rule 43 (Expression)
+
+
+State 108
+
+   42 Expression: Expression . "+" Expression
+   43           | Expression . "-" Expression
+   44           | Expression . "*" Expression
+   44           | Expression "*" Expression .
+   45           | Expression . "/" Expression
+   46           | Expression . "<" Expression
+   47           | Expression . "<=" Expression
+   48           | Expression . "equals" Expression
+   49           | Expression . "and" Expression
+   50           | Expression . "or" Expression
+
+    $default  reduce using rule 44 (Expression)
+
+
+State 109
+
+   42 Expression: Expression . "+" Expression
+   43           | Expression . "-" Expression
+   44           | Expression . "*" Expression
+   45           | Expression . "/" Expression
+   45           | Expression "/" Expression .
+   46           | Expression . "<" Expression
+   47           | Expression . "<=" Expression
+   48           | Expression . "equals" Expression
+   49           | Expression . "and" Expression
+   50           | Expression . "or" Expression
+
+    $default  reduce using rule 45 (Expression)
+
+
+State 110
+
+   42 Expression: Expression . "+" Expression
+   43           | Expression . "-" Expression
+   44           | Expression . "*" Expression
+   45           | Expression . "/" Expression
+   46           | Expression . "<" Expression
+   46           | Expression "<" Expression .
+   47           | Expression . "<=" Expression
+   48           | Expression . "equals" Expression
+   49           | Expression . "and" Expression
+   50           | Expression . "or" Expression
+
+    "+"  shift, and go to state 87
+    "-"  shift, and go to state 88
+    "*"  shift, and go to state 89
+    "/"  shift, and go to state 90
+
+    $default  reduce using rule 46 (Expression)
+
+
+State 111
+
+   42 Expression: Expression . "+" Expression
+   43           | Expression . "-" Expression
+   44           | Expression . "*" Expression
+   45           | Expression . "/" Expression
+   46           | Expression . "<" Expression
+   47           | Expression . "<=" Expression
+   47           | Expression "<=" Expression .
+   48           | Expression . "equals" Expression
+   49           | Expression . "and" Expression
+   50           | Expression . "or" Expression
+
+    "+"  shift, and go to state 87
+    "-"  shift, and go to state 88
+    "*"  shift, and go to state 89
+    "/"  shift, and go to state 90
+
+    $default  reduce using rule 47 (Expression)
+
+
+State 112
+
+   36 Block: Statement . Statements
+
+    IDENTIFIER  shift, and go to state 73
+    "print"     shift, and go to state 47
+    "if"        shift, and go to state 48
+    "while"     shift, and go to state 49
+
+    $default  reduce using rule 29 (Statements)
+
+    Statements  go to state 119
+    Statement   go to state 53
+    MethodCall  go to state 54
+
+
+State 113
+
+   33 Statement: "if" Expression "{" Block . "}" Else
+
+    "}"  shift, and go to state 120
+
+
+State 114
+
+   34 Statement: "while" Expression "{" Block . "}"
+
+    "}"  shift, and go to state 121
+
+
+State 115
+
+   42 Expression: Expression . "+" Expression
+   43           | Expression . "-" Expression
+   44           | Expression . "*" Expression
+   45           | Expression . "/" Expression
+   46           | Expression . "<" Expression
+   47           | Expression . "<=" Expression
+   48           | Expression . "equals" Expression
+   49           | Expression . "and" Expression
+   50           | Expression . "or" Expression
+   62 Arguments: Arguments "," Expression .
+
+    "equals"  shift, and go to state 84
+    "and"     shift, and go to state 85
+    "or"      shift, and go to state 86
+    "+"       shift, and go to state 87
+    "-"       shift, and go to state 88
+    "*"       shift, and go to state 89
+    "/"       shift, and go to state 90
+    "<"       shift, and go to state 91
+    "<="      shift, and go to state 92
+
+    $default  reduce using rule 62 (Arguments)
+
+
+State 116
+
+   31 Statement: IDENTIFIER "." IDENTIFIER "=" Expression .
+   42 Expression: Expression . "+" Expression
+   43           | Expression . "-" Expression
+   44           | Expression . "*" Expression
+   45           | Expression . "/" Expression
+   46           | Expression . "<" Expression
+   47           | Expression . "<=" Expression
+   48           | Expression . "equals" Expression
+   49           | Expression . "and" Expression
+   50           | Expression . "or" Expression
+
+    "equals"  shift, and go to state 84
+    "and"     shift, and go to state 85
+    "or"      shift, and go to state 86
+    "+"       shift, and go to state 87
+    "-"       shift, and go to state 88
+    "*"       shift, and go to state 89
+    "/"       shift, and go to state 90
+    "<"       shift, and go to state 91
+    "<="      shift, and go to state 92
+
+    $default  reduce using rule 31 (Statement)
+
+
+State 117
+
+   40 MethodCall: IDENTIFIER "." IDENTIFIER "(" Arguments . ")"
+   62 Arguments: Arguments . "," Expression
+
+    ")"  shift, and go to state 122
+    ","  shift, and go to state 97
+
+
+State 118
+
+   61 Expression: "new" IDENTIFIER "(" Arguments . ")"
+   62 Arguments: Arguments . "," Expression
+
+    ")"  shift, and go to state 123
+    ","  shift, and go to state 97
+
+
+State 119
+
+   36 Block: Statement Statements .
+
+    $default  reduce using rule 36 (Block)
+
+
+State 120
+
+   33 Statement: "if" Expression "{" Block "}" . Else
+
+    "else"  shift, and go to state 124
+
+    $default  reduce using rule 38 (Else)
+
+    Else  go to state 125
+
+
+State 121
+
+   34 Statement: "while" Expression "{" Block "}" .
+
+    $default  reduce using rule 34 (Statement)
+
+
+State 122
+
+   40 MethodCall: IDENTIFIER "." IDENTIFIER "(" Arguments ")" .
+
+    $default  reduce using rule 40 (MethodCall)
+
+
+State 123
+
+   61 Expression: "new" IDENTIFIER "(" Arguments ")" .
+
+    $default  reduce using rule 61 (Expression)
+
+
+State 124
+
+   37 Else: "else" . "{" Block "}"
+
+    "{"  shift, and go to state 126
+
+
+State 125
+
+   33 Statement: "if" Expression "{" Block "}" Else .
+
+    $default  reduce using rule 33 (Statement)
+
+
+State 126
+
+   37 Else: "else" "{" . Block "}"
+
+    IDENTIFIER  shift, and go to state 73
+    "print"     shift, and go to state 47
+    "if"        shift, and go to state 48
+    "while"     shift, and go to state 49
+
+    Statement   go to state 112
+    Block       go to state 127
+    MethodCall  go to state 54
+
+
+State 127
+
+   37 Else: "else" "{" Block . "}"
+
+    "}"  shift, and go to state 128
+
+
+State 128
+
+   37 Else: "else" "{" Block "}" .
+
+    $default  reduce using rule 37 (Else)

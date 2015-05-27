@@ -1,0 +1,1 @@
+Main{main() -> none{integer x print 1-2 x=5 printx-2}}

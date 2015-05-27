@@ -1,0 +1,11 @@
+classA {
+	integer x, y, z
+}
+classB extends classA {
+	integer x, y, z
+}
+Main{
+	main() -> none{
+		print 5
+	}
+}

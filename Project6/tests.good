@@ -1,0 +1,17 @@
+classA {
+       f0(x : integer) -> integer{
+       	    return x * x
+
+}
+
+}
+
+Main {
+     main() -> none {
+     	    classA a
+	    print a.f0(5)
+     
+}
+
+
+}
